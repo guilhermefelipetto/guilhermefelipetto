@@ -9,8 +9,3 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="40" height="40"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="40" height="40"/>
 </p>
-
-<p align="center">
-  <img src="https://github-readme-stats-git-masterorgs-guilhermefelipetto.vercel.app/api/top-langs/?username=guilhermefelipetto&layout=compact&theme=radical" />
-</p>
-
