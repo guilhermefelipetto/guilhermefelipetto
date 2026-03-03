@@ -1,7 +1,7 @@
 <h2 align="center">Guilherme Felipetto</h2>
 
 <p align="center">
-  Guilherme Felipetto, especialista em Visão Computacional, Python e C++, é Sócio-proprietário na YGG Tecnologia, Pesquisador no grupo BeeData (IME-USP) e <strong>aluno do Programa de Pós-Graduação em Ciência da Computação na USP</strong>.
+  <strong>Guilherme Felipetto</strong>, specialist in Computer Vision, Python, and C++, is a Co-owner at YGG Tecnologia, a Researcher in the BeeData group (IME-USP) and a student in the Computer Science Postgraduate Program at the <strong>University of São Paulo (USP)</strong>.
 </p>
 
 <p align=center>
