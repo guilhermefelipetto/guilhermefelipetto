@@ -51,6 +51,6 @@ Check out my implementations, research, and technical solutions:
 ### GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=guilhermefelipetto&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true" alt="GitHub Stats" height="150"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=guilhermefelipetto&layout=compact&theme=transparent&hide_border=true" alt="Top Languages" height="150"/>
+  <img src="https://githubusercontent.com" alt="GitHub Stats" height="180"/>
+  <img src="https://githubusercontent.com" alt="Top Languages" height="180"/>
 </p>
