@@ -51,6 +51,6 @@ Check out my implementations, research, and technical solutions:
 ### GitHub Stats
 
 <p align="center">
-  <img src="https://githubusercontent.com" alt="GitHub Stats" height="180"/>
-  <img src="https://githubusercontent.com" alt="Top Languages" height="180"/>
+  <img src="https://raw.githubusercontent.com/guilhermefelipetto/guilhermefelipetto/main/github-readme-stats.svg" alt="GitHub Stats" height="180"/>
+  <img src="https://raw.githubusercontent.com/guilhermefelipetto/guilhermefelipetto/main/top-langs.svg" alt="Top Languages" height="180"/>
 </p>
