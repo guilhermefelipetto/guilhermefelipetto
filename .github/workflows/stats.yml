@@ -24,7 +24,7 @@ jobs:
           card: top-langs
           path: top-langs.svg
           token: ${{ secrets.GH_PAYLOAD_TOKEN }}
-          options: username=guilhermefelipetto&theme=transparent&hide_border=true&langs_count=10&hide=html,css,scss&layout=compact
+          options: username=guilhermefelipetto&theme=transparent&hide_border=true&langs_count=10&hide=html,css,scss,jupyter%20notebook&layout=compact
 
       - name: Commit and Push
         run: |
