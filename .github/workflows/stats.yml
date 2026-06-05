@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Generate Stats Card
         uses: readme-tools/github-readme-stats-action@v1
         with:
@@ -18,7 +18,8 @@ jobs:
           token: ${{ secrets.GH_PAYLOAD_TOKEN }}
           options: username=guilhermefelipetto&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true&rank_icon=github&custom_title=Development%20Analytics&exclude_repo=Prova01MLOps,projeto_aviario,MlFlow-Class
 
-      - name: Generate Languages Card
+      # Mantido apenas para continuar gerando o arquivo (NÃO é usado no README).
+      - name: Generate Languages Card (legacy / unused in README)
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
@@ -34,3 +35,40 @@ jobs:
           git commit -m "Update GitHub Stats" || exit 0
           git pull --rebase origin main
           git push
+
+  # Card de linguagens REAL: analisa seus commits em qualquer repo
+  # (incluindo privados, repos de organização e forks), contando só o que VOCÊ escreveu.
+  update-languages:
+    runs-on: ubuntu-latest
+    needs: update-stats
+    steps:
+      - name: Languages by contribution (metrics)
+        uses: lowlighter/metrics@latest
+        with:
+          # PAT (classic) com escopos: repo + read:org  -> pra enxergar org/privado
+          token: ${{ secrets.GH_PAYLOAD_TOKEN }}
+          filename: top-langs-metrics.svg
+          base: ""
+          config_timezone: America/Sao_Paulo
+
+          # metrics commita o arquivo direto na branch via API do GitHub
+          output_action: commit
+          committer_branch: main
+          committer_message: "Update Languages (metrics)"
+
+          # Quais repositórios varrer:
+          repositories: 200
+          repositories_affiliations: owner, collaborator, organization_member
+          repositories_forks: yes
+
+          # Plugin de linguagens em modo "indepth":
+          # clona os repos e analisa SOMENTE os seus commits (em fork conta só seu PR).
+          plugin_languages: yes
+          plugin_languages_indepth: yes
+          plugin_languages_sections: most-used
+          plugin_languages_limit: 8
+          plugin_languages_threshold: 1%
+          plugin_languages_colors: github
+          plugin_languages_ignored: html, css, scss, jupyter notebook, tex, makefile, dockerfile
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_analysis_timeout_repositories: 15
