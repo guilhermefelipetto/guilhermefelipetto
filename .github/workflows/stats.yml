@@ -1,4 +1,5 @@
 name: GitHub Stats
+
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -7,6 +8,7 @@ on:
 jobs:
   update-stats:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -18,7 +20,6 @@ jobs:
           token: ${{ secrets.GH_PAYLOAD_TOKEN }}
           options: username=guilhermefelipetto&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true&rank_icon=github&custom_title=Development%20Analytics&exclude_repo=Prova01MLOps,projeto_aviario,MlFlow-Class
 
-      # Mantido apenas para continuar gerando o arquivo (NÃO é usado no README).
       - name: Generate Languages Card (legacy / unused in README)
         uses: readme-tools/github-readme-stats-action@v1
         with:
@@ -36,42 +37,72 @@ jobs:
           git pull --rebase origin main
           git push
 
-  # Card de linguagens REAL: analisa seus commits em qualquer repo
-  # (incluindo privados, repos de organização e forks), contando só o que VOCÊ escreveu.
   update-languages:
     runs-on: ubuntu-latest
     needs: update-stats
+
     steps:
+
+      # DEBUG: mostra tudo que o token consegue enxergar
+      - name: Show repositories visible to token
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GH_PAYLOAD_TOKEN }}
+          script: |
+            const repos = await github.paginate(
+              github.rest.repos.listForAuthenticatedUser,
+              {
+                affiliation: "owner,collaborator,organization_member",
+                per_page: 100
+              }
+            );
+
+            console.log("=================================");
+            console.log("TOTAL REPOSITORIES:", repos.length);
+            console.log("=================================");
+
+            repos.forEach(r => {
+              console.log(
+                `${r.full_name} | private=${r.private}`
+              );
+            });
+
       - name: Languages by contribution (metrics)
         uses: lowlighter/metrics@latest
         with:
-          # PAT (classic) com escopos: repo + read:org  -> pra enxergar org/privado
           token: ${{ secrets.GH_PAYLOAD_TOKEN }}
+
           filename: top-langs-metrics.svg
           base: ""
           config_timezone: America/Sao_Paulo
 
-          # metrics commita o arquivo direto na branch via API do GitHub
           output_action: commit
           committer_branch: main
           committer_message: "Update Languages (metrics)"
 
-          # Quais repositórios varrer:
           repositories: 200
           repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: yes
 
-          # Plugin de linguagens em modo "indepth":
-          # clona os repos e analisa SOMENTE os seus commits (em fork conta só seu PR).
-          plugin_languages_recent_load: 1000
-          plugin_languages_recent_days: 730
           plugin_languages: yes
           plugin_languages_indepth: yes
+
+          plugin_languages_recent_load: 1000
+          plugin_languages_recent_days: 730
+
           plugin_languages_sections: most-used
           plugin_languages_details: percentage
-          plugin_languages_limit: 8
+
+          plugin_languages_limit: 20
           plugin_languages_threshold: 0.01%
+
           plugin_languages_colors: github
+
           plugin_languages_ignored: html, css, scss, jupyter notebook, tex, makefile, dockerfile
-          plugin_languages_analysis_timeout: 60
-          plugin_languages_analysis_timeout_repositories: 30
+
+          plugin_languages_analysis_timeout: 120
+          plugin_languages_analysis_timeout_repositories: 60
+
+          # DEBUG
+          debug: yes
+          debug_flags: metrics
