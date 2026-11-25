@@ -21,7 +21,7 @@ Computer Vision Researcher | MSc Student @ IME-USP | Data Scientist | ML Enginee
 ### About Me
 
 - **MSc student in Computer Science** at **IME-USP** (University of São Paulo), advised by **Prof. Paulo A. V. de Miranda**.
-- Research on **graph-based image segmentation with shape constraints**, building on the **Oriented Image Foresting Transform (OIFT)**: efficient algorithms with formal guarantees that the segmented object respects a geometric model, starting with polygonal band constraints whose sides adapt to the image.
+- Research on **graph-based image segmentation with shape constraints**, building on the **Oriented Image Foresting Transform (OIFT)**.
 - **Data Scientist** at **YGG Tecnologia**, working on computer vision (face recognition, facial emotion recognition, person tracking) and NLP systems end to end, from model training to deployment. Currently coordinating, on YGG's side, an applied AI project with **LAMIA**.
 - Former member of the management team at **BeeData (IME-USP)**, USP's first competitive data science league.
 - Mostly **Python** and **C/C++** (PyTorch, TensorFlow), with production experience in **C#/Node.js**, MLOps (**MLflow**, **Docker**) and **AWS**.
